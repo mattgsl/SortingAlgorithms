@@ -1,10 +1,10 @@
 import java.util.Random;
 
 /*
- * Created on May 28, 2020 by mttr.
+ * Created on Jun 16, 2020 by mttr.
  */
 
-public class InsertionSort {
+public class SelectionSort {
 
 	public static void main(String[] args) {
 		int[] newArray = new int[14]; // Initialize array;
@@ -17,7 +17,7 @@ public class InsertionSort {
 		System.out.println("======UNSORTED=======");
 		printArray(newArray);
 		System.out.println("=======SORTED========");
-		insertionSort(newArray);
+		selectionSort(newArray);
 		printArray(newArray);
 	}
 
@@ -28,15 +28,20 @@ public class InsertionSort {
 		}
 	}
 
-	public static void insertionSort(int[] array) {
-		for (int i = 1; i < array.length; i++) {
-			int current = array[i];
-			int j = i - 1;
-			while (j >= 0 && current < array[j]) {
-				array[j + 1] = array[j];
-				j--;
+	public static void selectionSort(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			int min = array[i];
+			int minId = i;
+			for (int j = i + 1; j < array.length; j++) {
+				if (array[j] < min) {
+					min = array[j];
+					minId = j;
+				}
 			}
-			array[j + 1] = current;
+			// swap
+			int temp = array[i];
+			array[i] = min;
+			array[minId] = temp;
 		}
 	}
 }
